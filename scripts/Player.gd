@@ -1,9 +1,7 @@
-extends KinematicBody2D
+extends Actor
 
 
-export var gravity: = 4000
-export var speed: = Vector2(100, 400)
-var velocity: = Vector2.ZERO
+export var stomp_impulse: = 1000.0
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 
 
@@ -34,3 +32,9 @@ func _physics_process(delta: float) -> void:
 	if direction.y != 0:
 		velocity.y = speed.y * direction.y
 	velocity = move_and_slide(velocity, Vector2.UP)
+
+
+func _on_EnemyDetector_body_entered(body: Node) -> void:
+	velocity.y = -stomp_impulse
+	yield(get_tree().create_timer(0.4), "timeout")
+	queue_free()
