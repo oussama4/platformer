@@ -21,6 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="platformer redux"
+run/main_scene="res://scenes/ui/MainScreen.tscn"
 config/icon="res://icon.png"
 
 [display]
