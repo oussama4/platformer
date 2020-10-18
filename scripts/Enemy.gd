@@ -1,6 +1,7 @@
 extends Actor
 
 
+export var score: = 200
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 
 
@@ -32,3 +33,4 @@ func _on_body_entered(body: Node) -> void:
 	
 	$CollisionShape2D.set_deferred("disabled", true)
 	queue_free()
+	Global.score += score

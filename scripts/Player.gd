@@ -38,3 +38,4 @@ func _on_EnemyDetector_body_entered(body: Node) -> void:
 	velocity.y = -stomp_impulse
 	yield(get_tree().create_timer(0.4), "timeout")
 	queue_free()
+	Global.died = true

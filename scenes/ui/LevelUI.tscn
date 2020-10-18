@@ -1,0 +1,124 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/ui/QuitButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/ui/ChangeSceneButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/ui/LevelUI.gd" type="Script" id=4]
+
+[node name="LevelUI" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -248.0
+margin_top = 24.0
+margin_right = -72.0
+margin_bottom = 60.0
+text = "Score: %s"
+align = 1
+
+[node name="PauseOverlay" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.254902 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="PauseOverlay"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -64.0
+margin_top = 88.0
+margin_right = 74.0
+margin_bottom = 124.0
+text = "Paused"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseMenu" type="VBoxContainer" parent="PauseOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = -67.0
+margin_right = 102.0
+margin_bottom = 67.0
+
+[node name="ResumeButton" type="Button" parent="PauseOverlay/PauseMenu"]
+margin_right = 198.0
+margin_bottom = 42.0
+text = "Resume"
+
+[node name="HomeButton" parent="PauseOverlay/PauseMenu" instance=ExtResource( 3 )]
+text = "Home"
+next_scene = "res://scenes/ui/MainScreen.tscn"
+
+[node name="QuitButton" parent="PauseOverlay/PauseMenu" instance=ExtResource( 2 )]
+
+[node name="GameOverOverlay" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.258824 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="GameOverOverlay"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -96.0
+margin_top = 88.0
+margin_right = 100.0
+margin_bottom = 124.0
+text = "Game Over"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverMenu" type="VBoxContainer" parent="GameOverOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = -67.0
+margin_right = 104.0
+margin_bottom = 67.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RetryButton" type="Button" parent="GameOverOverlay/GameOverMenu"]
+margin_right = 200.0
+margin_bottom = 42.0
+text = "Retry"
+
+[node name="HomeButton" parent="GameOverOverlay/GameOverMenu" instance=ExtResource( 3 )]
+margin_top = 46.0
+margin_right = 200.0
+margin_bottom = 88.0
+text = "Home"
+next_scene = "res://scenes/ui/MainScreen.tscn"
+
+[node name="QuitButton" parent="GameOverOverlay/GameOverMenu" instance=ExtResource( 2 )]
+margin_top = 92.0
+margin_right = 200.0
+margin_bottom = 134.0
+[connection signal="button_up" from="PauseOverlay/PauseMenu/ResumeButton" to="." method="_on_Resume_button_up"]
+[connection signal="button_up" from="GameOverOverlay/GameOverMenu/RetryButton" to="." method="_on_Retry_button_up"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/sheet.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/background.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Coin.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ui/LevelUI.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 70, 0, 70, 70, 0, 70 )
@@ -300,7 +301,12 @@ points = PoolVector2Array( 0, 0, 70, 0, 70, 70, 0, 70 )
 12/shapes = [  ]
 12/z_index = 0
 
-[node name="Level01" type="Node2D"]
+[node name="Level02" type="Node2D"]
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="LevelUI" parent="UILayer" instance=ExtResource( 6 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
